@@ -1,0 +1,152 @@
+# Make a copy of this file named robottelo.properties
+
+[main]
+
+# A hostname is required. scheme (default: https) and port are optional.
+# Suggested values for "scheme" are "http" and "https".
+server.hostname=
+#server.scheme=https
+#server.port=
+
+server.ssh.key_private=/home/whoami/.ssh/id_hudson_dsa
+server.ssh.username=root
+
+# For LDAP Authentication.
+ldap.hostname=
+ldap.username=
+ldap.passwd=
+ldap.basedn=
+ldap.grpbasedn=
+
+# The directory where screenshots will be saved.
+# Note:- Content under /tmp may be deleted after a reboot.
+screenshots.base_path=/tmp/robottelo/screenshots/
+# Enter only 'sat' for Satellite and 'sam' for SAM
+project=sat
+locale=en_US.UTF-8
+remote=0
+smoke=0
+
+# For testing with fake manifests, zipfile containing valid manifest is required,
+# as well as key/cert pair. All of these settings are urls.
+manifest.fake_url=http://example.org/valid-redhat-manifest.zip
+manifest.key_url=http://example.org/fake_manifest.key
+manifest.cert_url=http://example.org/fake_manifest.crt
+
+verbosity=2
+
+# Virtual display controls if PyVirtualDisplay should be used to run UI tests
+# when setting it to 1 then make sure to install required dependencies
+virtual_display=0
+
+# If virtual_display=1 and window_manager_command is set, the window manager
+# command will be run before opening any browser window
+window_manager_command=
+
+[clients]
+# Provisioning server hostname where the clients will be created
+provisioning_server=
+# Path on the provisioning server where the virtual images will be stored. If
+# not specified in the configuration, the default libvirt path will be used
+# "/var/lib/libvirt/images/". Make sure that the path exists on the
+# provisioning server.
+image_dir=/opt/robottelo/images
+
+[docker]
+# Internal docker URL in the format http[s]://<server>:<port>. The
+# {server_hostname} variable can be used and will be replaced by
+# main.server.hostname value.
+internal_url=http://localhost:2375
+# External docker URL in the format http[s]://<server>:<port>.
+external_url=
+
+[foreman]
+admin.username=admin
+admin.password=changeme
+
+[saucelabs]
+driver=firefox
+
+# Section for declaring Sat5->Sat6 transition parameters
+[transitions]
+# URL of the  exported data archive (typically a .tgz containing a bunch of CSV
+# files together with repo data)
+#export_tar.url=http://example.org/sat5_export_data.tgz
+
+# Section for performance tests parameters.
+[performance]
+
+# Control whether or not to time on hammer commands in robottelo/cli/base.py
+# Default set to be 0, i.e. no timing of performance is measured and thus no
+# interference to original robottelo tests.
+test.foreman.perf=0
+
+# Folowing entries are used for preparation of performance tests after a fresh
+# install.  They will be used by
+# test/foreman/performance/test_standard_prep.py, which supports:
+#
+# 1. downloading manifest,
+# 2. uploading manifest to subscription,
+# 3. updating Red Hat CDN URL,
+# 4. enabling key repositories: rhel6-rpms, rhel7-rpms, rhel6-kickstart-rpms,
+#    rhel7-kickstart-rpms, rhel6-optional-rpms, rhel7-optional-rpms,
+#    rhel6-optional-source-rpms, rhel7-optional-source-rpms,
+#    rhel6-optional-debug-rpms, r7-optional-debug-rpms
+#
+# Note that this preparation step is not required as long as satellite server
+# is already configured.
+test.manifest.location=http://path/to/manifests/
+test.manifest.file=example-manifest-name.zip
+test.cdn.address=http://example.redhat.cdn/pub
+
+# Product-ID for enabling repositories by
+# robottelo.cli.repository_set.RepositorySet
+test.pid=15
+
+# Set variables for a list of virtual machines' IP address, which would conduct
+# concurrent system subscriptions. Assume that those vms are pre-provisioned.
+# As for current workaround, append each IP address to the end, join by ","
+# without any spaces.
+test.virtual_machines_list=127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,127.0.0.1,
+
+# Default Organization ID as option of various hammer commands.
+test.organization.id=1
+
+# Savepoint utility to restore the database. For example, after conducting
+# 5,000 concurrent subscription by activation-key using 10 clients, in order to
+# start next 5k test case of subscription by register and attach, the
+# performance test would restore the database back to the state where there's
+# no client being registered.
+#
+# Create savepoint-1 immediately after a fresh installation of Satellite.
+test.savepoint1_fresh_install=date-savepoint1-description
+
+# Create savepoint-2 after enabling repositories, but before any system
+# subscription or repository synchronization.
+test.savepoint2_enabled_repos=date-savepoint2-repos-enabled-not-sync
+
+# For creating activation-key
+test.activation_key.name=ak-1
+test.default.organization=Default_Organization
+test.content.view=Default Organization View
+test.life.cycle.env=Library
+
+# For adding activation-key to subscription
+test.add_ak_subscription_qty=1
+
+# For register and attach by subscription manager
+test.attach.env=Library
+
+# Following entries are used for csv output file names
+csv.raw_ak_file_name=raw-ak-concurrent.csv
+csv.stat_ak_file_name=stat-ak-concurrent.csv
+csv.raw_att_file_name=raw-att-concurrent.csv
+csv.stat_att_file_name=stat-att-concurrent.csv
+csv.raw_del_file_name=raw-del-concurrent.csv
+csv.stat_del_file_name=stat-del-concurrent.csv
+
+# Parameter for number of threads for each test case
+csv.num_threads=1,2,4,6,8,10
+
+# Parameter for number of buckets to be sliced by csv generating function
+csv.num_buckets=10
