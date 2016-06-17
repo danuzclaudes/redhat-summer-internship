@@ -1,0 +1,33 @@
+cat /etc/pulp/content/sources/conf.d/content.conf
+[content-world]
+enabled: 1
+priority: 0
+expires: 3d
+name: Content World
+type: yum
+base_url: http://content-world/content/
+paths: f18/x86_64/os/ \
+       f18/i386/os/ \
+       f19/x86_64/os \
+       f19/i386/os
+max_concurrent: 10
+max_speed: 1000
+ssl_ca_cert: /etc/pki/tls/certs/content-world.ca
+ssl_client_key: /etc/pki/tls/private/content-world.key
+ssl_client_cert: /etc/pki/tls/certs/content-world.crt
+
+
+cat /etc/pulp/content/sources/conf.d/content.conf
+[content-world]
+enabled: 1
+priority: 0
+expires: 3d
+name: Content World
+type: yum
+base_url: https://repos.fedorapeople.org/repos/pulp/pulp/beta/
+paths: 2.8/7/x86_64// \
+       2.8/7/i386/ \
+       2.7/7/x86_64/ \
+       2.7/7/i386/
+max_concurrent: 10
+max_speed: 1000
