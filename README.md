@@ -2,9 +2,12 @@
 This is the coding playground during the internship.
 
 ## Portal to commits and code-reviews in summer 2015
-For all the merged pull requests contributed to [Robottelo](https://github.com/SatelliteQE/robottelo) in summer 2015, please look [here](https://github.com/SatelliteQE/robottelo/commits?author=danuzclaudes)
+For all the merged pull requests contributed to [Robottelo](https://github.com/SatelliteQE/robottelo) in summer 2015, please look [here](https://github.com/SatelliteQE/robottelo/commits?author=danuzclaudes): https://github.com/SatelliteQE/robottelo/commits?author=danuzclaudes
 
 ## Portal to commits and code-reviews in summer 2016
+For all the merged pull requests contributed to [Pulp Smash](https://github.com/PulpQE/pulp-smash) in summer 2016, please look [here](https://github.com/PulpQE/pulp-smash/pulls?q=is%3Apr+is%3Aclosed+author%3Adanuzclaudes): https://github.com/PulpQE/pulp-smash/pulls?q=is%3Apr+is%3Aclosed+author%3Adanuzclaudes
+
+For all blog posts published on Pulp's official blog site, [please look here](http://www.pulpproject.org/tag/pulpqe-intern/): http://www.pulpproject.org/tag/pulpqe-intern/
 
 
 ## About the internship in summer 2015
