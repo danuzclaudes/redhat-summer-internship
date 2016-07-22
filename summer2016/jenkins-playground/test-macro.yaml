@@ -1,0 +1,30 @@
+# The 'add' macro takes a 'number' parameter and will 
+# creates a job which prints 'Adding ' followed by the
+# 'number' parameter:
+# Execution: jenkins-jobs test test-macro.yaml
+- builder:
+    name: add
+    builders:
+     - shell: "echo Adding {number}"
+
+# A specialized macro 'addtwo' reusing the 'add' macro but 
+# with a 'number' parameter hardcoded to 'two':
+- builder:
+    name: addtwo
+    builders:
+     - add:
+        number: "two"
+
+# Glue to have Jenkins Job Builder to expand this YAML:
+- job:
+    name: "testingjob"
+    builders:
+     # The specialized macro:
+     - addtwo  # echo Adding two
+     # Generic macro call with a parameter
+     - add:
+        number: "ZERO" # echo Adding ZERO
+     # Generic macro called without a parameter.
+     # Never do this!
+     - add
+
